@@ -33,6 +33,7 @@
  */ 
 package fr.paris.lutece.plugins.foyerfiscal.business;
 
+import fr.paris.lutece.plugins.apipart.business.InformationsClient;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 /**
  * This is the business class for the object FoyerFiscal
  */ 
-public class FoyerFiscal implements Serializable
+public class FoyerFiscal extends InformationsClient implements Serializable
 {
     private static final long serialVersionUID = 1L;
     
@@ -61,7 +62,7 @@ public class FoyerFiscal implements Serializable
         Map<String, Object> geometry = ( Map<String,Object> ) adresseGeo.get( "geometry" );
         List<Double> _coordinates = ( List<Double> ) geometry.get( "coordinates" );
         
-        setAdresse( (String) adresse.get( "label" ));
+        setAdresse( (String) adresse.get( "label" ) );
         setLongitude( _coordinates.get(0) );
         setLatitude( _coordinates.get(1) );
     }
@@ -76,7 +77,7 @@ public class FoyerFiscal implements Serializable
     }
     
     /**
-     * Sets the _strAdresse
+     * Sets the _dLongitude
      * @param dLongitude The _dLongitude
      */ 
     public void setLongitude( Double dLongitude )
