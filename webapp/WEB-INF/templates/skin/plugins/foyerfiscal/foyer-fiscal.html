@@ -1,0 +1,61 @@
+<div class="row" >
+    <div class="col-sm-12">
+        <form class="form-horizontal" method="post" name="foyerfiscal" action="jsp/site/Portal.jsp?page=foyerfiscal">
+            <fieldset>
+                <@messages errors=errors />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="numeroFiscal" >#i18n{apipart.attribute.numeroFiscal} * :</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" id="numeroFiscal" name="numeroFiscal" maxlength="13" size="13" value="${informationsFiscales.numeroFiscal!''}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="referenceAvis" >#i18n{apipart.attribute.referenceAvis} * :</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" id="referenceAvis" name="referenceAvis"  maxlength="13" size="13" value="${informationsFiscales.referenceAvis!''}" />
+                        <p class="help-block">#i18n{apipart.attribute.referenceAvis.help}</p>
+                    </div>
+                </div>
+                <div style="text-align: center">
+                    <button name="action_foyerFiscal" class="btn btn-default" type="submit" tabindex="16">
+                        #i18n{foyerfiscal.button.foyerFiscal}
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>  
+</div>
+<#if foyerFiscal?? >
+<#list foyerFiscal.foyerFiscalList as foyerFiscal>
+<div class="row" >
+    <div class="col-sm-12">
+        <hr>
+        <div class="col-sm-12">
+            <label class="col-sm-3 control-label" for="address" >#i18n{foyerfiscal.attribute.address} :</label>
+            <div class="col-sm-9" id="address">
+                ${foyerFiscal.adresse}
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <label class="col-sm-3 control-label" for="longitude" >#i18n{foyerfiscal.attribute.longitude} :</label>
+            <div class="col-sm-9" id="longitude">
+                ${foyerFiscal.longitude}
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <label class="col-sm-3 control-label" for="latitude" >#i18n{foyerfiscal.attribute.latitude} :</label>
+            <div class="col-sm-9" id="latitude">
+                ${foyerFiscal.latitude}
+            </div>
+        </div>
+        <div style="text-align: center">
+            <button onclick="initLat(${foyerFiscal.latitude});initLon(${foyerFiscal.longitude});initAdresse('${foyerFiscal.adresse}');initmap();">
+                #i18n{foyerfiscal.button.displayMap}
+            </button>
+        </div>
+        <hr>
+        <div id="map"></div>
+    </div>  
+</div>
+</#list>
+</#if>

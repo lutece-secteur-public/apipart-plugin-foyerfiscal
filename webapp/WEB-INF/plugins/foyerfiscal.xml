@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plug-in>
+    <name>foyerfiscal</name>
+    <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
+    <version>1.0.0</version>
+    <documentation></documentation>
+    <installation></installation>
+    <changes></changes>
+    <user-guide></user-guide>
+    <description>foyerfiscal.plugin.description</description>
+    <provider>foyerfiscal.plugin.provider</provider>
+    <provider-url>http://lutece.paris.fr/</provider-url>
+    <icon-url>images/admin/skin/feature_default_icon.png</icon-url>
+    <copyright>Copyright (c) 2016 Mairie de Paris</copyright>
+    <db-pool-required>1</db-pool-required>
+    
+    <core-version-dependency>
+        <min-core-version>4.1.0</min-core-version>
+        <max-core-version/>	
+    </core-version-dependency>
+
+    <!-- Admin features parameters -->
+    <admin-features>
+    </admin-features>    
+
+    <!-- XPages parameters -->
+    <applications>
+        <application>
+            <application-id>foyerfiscal</application-id>
+            <application-class>fr.paris.lutece.plugins.foyerfiscal.web.FoyerFiscalXPage</application-class>
+        </application>
+    </applications>
+    
+    <!-- Specific plugin CSS stylesheets -->
+    <css-stylesheets>
+        <css-stylesheets-scope>xpage</css-stylesheets-scope>
+        <css-stylesheet>foyerfiscal/foyerfiscal.css</css-stylesheet>
+        <css-stylesheet>leaflet/leaflet.css</css-stylesheet>
+    </css-stylesheets>
+    
+    <javascript-files>
+        <javascript-files-scope>xpage</javascript-files-scope>
+        <javascript-file>foyerfiscal/foyerfiscal.js</javascript-file>
+        <javascript-file>leaflet/leaflet.js</javascript-file>
+    </javascript-files>
+
+    <!-- Portlet parameters -->
+    <portlets>
+   </portlets>
+</plug-in>
