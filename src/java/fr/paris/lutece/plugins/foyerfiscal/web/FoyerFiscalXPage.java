@@ -34,7 +34,7 @@
 package fr.paris.lutece.plugins.foyerfiscal.web;
 
 import fr.paris.lutece.plugins.foyerfiscal.api.FoyerFiscalAPI;
-import fr.paris.lutece.plugins.foyerfiscal.business.FoyerFiscalList;
+import fr.paris.lutece.plugins.foyerfiscal.business.FoyerFiscal;
 
 import fr.paris.lutece.plugins.apipart.business.InformationsFiscales;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
@@ -67,7 +67,7 @@ public class FoyerFiscalXPage extends MVCApplication
     private static final String PARAMETER_REFERENCE_AVIS = "referenceAvis";
     
     // MARKERS
-    private static final String MARK_FOYER_FISCAL_LIST = "foyerFiscal";
+    private static final String MARK_FOYER_FISCAL = "foyerFiscal";
     private static final String MARK_INFORMATIONS_FISCALES = "informationsFiscales";
     
     //ERRORS
@@ -78,7 +78,7 @@ public class FoyerFiscalXPage extends MVCApplication
     private static final String ERROR_FOYER_FISCAL = "foyerfiscal.error.foyerFiscal";
     
     private static final long serialVersionUID = 1L;
-    private FoyerFiscalList _foyerFiscalList;
+    private FoyerFiscal _foyerFiscal;
     private InformationsFiscales _informationsFiscales;
     private final FoyerFiscalAPI _foyerFiscalAPI = SpringContextService.getBean("foyerfiscal.FoyerFiscalAPI");
 
@@ -96,7 +96,7 @@ public class FoyerFiscalXPage extends MVCApplication
         }
         Map<String, Object> model = getModel(  );
         model.put( MARK_INFORMATIONS_FISCALES, _informationsFiscales );
-        model.put( MARK_FOYER_FISCAL_LIST , _foyerFiscalList );
+        model.put( MARK_FOYER_FISCAL , _foyerFiscal );
         return getXPage( TEMPLATE_FOYER_FISCAL, request.getLocale(  ), model );
     }
     
@@ -108,7 +108,7 @@ public class FoyerFiscalXPage extends MVCApplication
     @Action( ACTION_FOYER_FISCAL )
     public XPage actionFoyerFiscal( HttpServletRequest request )
     {
-        _foyerFiscalList = null;
+        _foyerFiscal = null;
         _informationsFiscales.setNumeroFiscal(request.getParameter( PARAMETER_NUMERO_FISCAL ));
         _informationsFiscales.setReferenceAvis(request.getParameter( PARAMETER_REFERENCE_AVIS ));
         boolean formComplete = true;
@@ -141,9 +141,9 @@ public class FoyerFiscalXPage extends MVCApplication
         }
         else
         {
-            _foyerFiscalList = _foyerFiscalAPI.getFoyerFiscal(request, _informationsFiscales);
+            _foyerFiscal = _foyerFiscalAPI.getFoyerFiscal(request, _informationsFiscales);
         
-            if ( _foyerFiscalList == null )
+            if ( _foyerFiscal == null )
             {
                 addError( ERROR_FOYER_FISCAL, getLocale( request ) );
             }

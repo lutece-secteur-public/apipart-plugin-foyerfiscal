@@ -33,7 +33,7 @@
  */
 package fr.paris.lutece.plugins.foyerfiscal.api;
 
-import fr.paris.lutece.plugins.foyerfiscal.business.FoyerFiscalList;
+import fr.paris.lutece.plugins.foyerfiscal.business.FoyerFiscal;
 
 import fr.paris.lutece.plugins.apipart.service.MapperService;
 import fr.paris.lutece.plugins.apipart.business.InformationsFiscales;
@@ -60,22 +60,22 @@ public class FoyerFiscalAPI extends AbstractApiPartAPI
      * @param informationsFiscales the InformationsFiscales
      * @return the FoyerFiscal
      */
-    public FoyerFiscalList getFoyerFiscal( HttpServletRequest request, InformationsFiscales informationsFiscales )
+    public FoyerFiscal getFoyerFiscal( HttpServletRequest request, InformationsFiscales informationsFiscales )
     {
-        FoyerFiscalList foyerFiscalList = null;
+        FoyerFiscal foyerFiscal = null;
         try
         {
             String strResponse = buildRequestAPI(informationsFiscales);
             if(strResponse != null)
             {
-                foyerFiscalList = MapperService.parse( strResponse, FoyerFiscalList.class );
+                foyerFiscal = MapperService.parse( strResponse, FoyerFiscal.class );
             }
         }
         catch ( IOException ex )
         {
             AppLogService.error( "Error Foyer Fiscal : " + ex.getMessage(  ), ex );
         }
-        return foyerFiscalList;
+        return foyerFiscal;
     }
     
     /**

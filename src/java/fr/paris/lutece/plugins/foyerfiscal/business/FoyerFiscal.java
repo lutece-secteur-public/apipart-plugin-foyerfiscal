@@ -34,90 +34,89 @@
 package fr.paris.lutece.plugins.foyerfiscal.business;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
- * This is the business class for the object QuotientFamilial
+ * This is the business class for the object FoyerFiscal
  */ 
 public class FoyerFiscal implements Serializable
 {
     private static final long serialVersionUID = 1L;
     
-    @JsonProperty("adresse")
-    private AdresseComplete _adresseComplete = new AdresseComplete();
-    
-    @JsonProperty("geometry")
-    private Geometry _geometry = new Geometry();
+    private String _strAdresse;
+    private Double _dLatitude;
+    private Double _dLongitude;
 
-    /**
-     * Returns the _adresseComplete
-     * @return The _adresseComplete
+     /**
+     * Sets the Adresses
+     * @param adresses The Adresses
      */
-    public AdresseComplete getAdresseComplete( )
+    @JsonProperty( "adresses" )
+    public void setAdresses( Object[] adresses )
     {
-        return _adresseComplete;
-    }
-
-    /**
-     * Sets the _adresseComplete
-     * @param adresseComplete The _adresseComplete
-     */ 
-    public void setAdresseComplete( AdresseComplete adresseComplete )
-    {
-        _adresseComplete = adresseComplete;
+        Map<String, Object> adresseGeo = ( Map<String,Object> ) adresses[0];
+        Map<String, Object> adresse = ( Map<String,Object> ) adresseGeo.get( "adresse" );
+        Map<String, Object> geometry = ( Map<String,Object> ) adresseGeo.get( "geometry" );
+        List<Double> _coordinates = ( List<Double> ) geometry.get( "coordinates" );
+        
+        setAdresse( (String) adresse.get( "label" ));
+        setLongitude( _coordinates.get(0) );
+        setLatitude( _coordinates.get(1) );
     }
     
     /**
-     * Returns the _geometry
-     * @return The _geometry
-     */
-    public Geometry getGeometry( )
-    {
-        return _geometry;
-    }
-
-    /**
-     * Sets the _geometry
-     * @param geometry The _geometry
-     */ 
-    public void setGeometry( Geometry geometry )
-    {
-        _geometry = geometry;
-    }
-    
-    /**
-     * Get the adresse
-     * @return the adresse
-     */
-    public String getAdresse()
-    {
-        return getAdresseComplete().getAdresse();
-    }
-    
-    /**
-     * Get the type of geometry
-     * @return the type of geometry
-     */
-    public String getType()
-    {
-        return getGeometry().getType();
-    }
-    
-    /**
-     * Get the longitude
-     * @return the longitude
+     * Get the _dLongitude
+     * @return the _dLongitude
      */
     public Double getLongitude()
     {
-        return getGeometry().getCoordinate().get(0);
+        return _dLongitude;
     }
     
     /**
-     * Get the latitude
-     * @return the latitude
+     * Sets the _strAdresse
+     * @param dLongitude The _dLongitude
+     */ 
+    public void setLongitude( Double dLongitude )
+    {
+        _dLongitude = dLongitude;
+    }
+    
+    /**
+     * Get the _dLatitude
+     * @return the _dLatitude
      */
     public Double getLatitude()
     {
-        return getGeometry().getCoordinate().get(1);
+        return _dLatitude;
+    }
+    
+    /**
+     * Sets the _dLatitude
+     * @param dLatitude The _dLatitude
+     */ 
+    public void setLatitude( Double dLatitude )
+    {
+        _dLatitude = dLatitude;
+    }
+    
+    /**
+     * Returns the _strAdresse
+     * @return The _strAdresse
+     */
+    public String getAdresse( )
+    {
+        return _strAdresse;
+    }
+
+    /**
+     * Sets the _strAdresse
+     * @param strAdresse The _strAdresse
+     */ 
+    public void setAdresse( String strAdresse )
+    {
+        _strAdresse = strAdresse;
     }
 }
